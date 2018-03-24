@@ -2,6 +2,8 @@
 <resources>
 
 
-    <dimen name="cardview_altura">120dp</dimen>
+    <dimen name="cardview_altura">140dp</dimen>
     <dimen name="cardview_largura">180dp</dimen>
+    <dimen name="imgproduto_altura">120dp</dimen>
+
 </resources>

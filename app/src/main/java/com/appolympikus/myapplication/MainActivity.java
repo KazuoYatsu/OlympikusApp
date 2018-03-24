@@ -64,9 +64,10 @@ public class MainActivity extends AppCompatActivity
         lsProduto.add(new Produto("RF.:X99-9999-999-999","Masculino", "Descricao produto - ",R.drawable.img1_small));
         lsProduto.add(new Produto("RF.:X88-8888-888-888","Feminino", "Descricao produto - ",R.drawable.img2_small));
         lsProduto.add(new Produto("RF.:77-7777-777-777","Masculino", "Descricao produto - ",R.drawable.img3_small));
-        lsProduto.add(new Produto("RF.:X69-9999-999-999","Masculino", "Descricao produto - ",R.drawable.img1_small));
-        lsProduto.add(new Produto("RF.:X58-8888-888-888","Feminino", "Descricao produto - ",R.drawable.img2_small));
-        lsProduto.add(new Produto("RF.:47-7777-777-777","Masculino", "Descricao produto - ",R.drawable.img3_small));
+        lsProduto.add(new Produto("RF.:X69-9999-999-999","Masculino", "Descricao produto - ",R.drawable.img4_small));
+        lsProduto.add(new Produto("RF.:X58-8888-888-888","Feminino", "Descricao produto - ",R.drawable.img5_small));
+        lsProduto.add(new Produto("RF.:47-7777-777-777","Masculino", "Descricao produto - ",R.drawable.img6_small));
+        lsProduto.add(new Produto("RF.:37-7777-777-777","Masculino", "Descricao produto - ",R.drawable.img7_small));
 
         RecyclerView myrv = (RecyclerView) findViewById(R.id.reciclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, lsProduto);
