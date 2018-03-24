@@ -19,7 +19,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ProdutoActivity"></activity>
+        <activity android:name=".ProdutoActivity" />
+        <activity android:name=".EditarPostActivity"></activity>
     </application>
 
 </manifest>
