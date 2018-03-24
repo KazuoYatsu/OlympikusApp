@@ -28,8 +28,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-       
 
+        carregarListaProdutos();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -70,8 +70,9 @@ public class MainActivity extends AppCompatActivity
 
         RecyclerView myrv = (RecyclerView) findViewById(R.id.reciclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, lsProduto);
-        int numero_colunas = 2;
-        myrv.setLayoutManager(new GridLayoutManager(this, numero_colunas));
+
+        myrv.setLayoutManager(new GridLayoutManager(this,2));
+        myrv.setAdapter(myAdapter);
     }
 
     @Override
