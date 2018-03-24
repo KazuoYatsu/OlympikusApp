@@ -6,4 +6,52 @@
     android:layout_height="match_parent"
     tools:context="com.appolympikus.myapplication.ProdutoActivity">
 
+
+    <android.support.v4.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="89dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/produtothumbnail"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:background="#2d2d2d"
+                android:scaleType="centerCrop" />
+
+            <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="8dp"
+                android:background="@color/colorGray"
+                android:padding="10dp"
+                android:text="REF.:X99-9999-9999-999"
+                android:textColor="@color/colorPrimary"
+                android:textSize="14dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginTop="2dp"
+                android:padding="2dp"
+                android:text="Tenis Olympikus Flix 2 Feminino - Preto e Pink"
+                android:textSize="26dp" />
+
+        </LinearLayout>
+
+
+    </android.support.v4.widget.NestedScrollView>
+
 </android.support.constraint.ConstraintLayout>
