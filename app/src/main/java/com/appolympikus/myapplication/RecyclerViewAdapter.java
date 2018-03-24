@@ -1,6 +1,7 @@
 package com.appolympikus.myapplication;
 
 import android.content.Context;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.tv_titulo_ref.setText(mData.get(position).getTitulo_ref());
         holder.img_produto_thumbnail.setImageResource(mData.get(position).getThumbnail());
+        holder.cardview.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
 
     }
 
@@ -51,6 +58,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         TextView tv_titulo_ref;
         ImageView img_produto_thumbnail;
+        CardView cardview;
 
 
 
@@ -58,6 +66,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             super(itemView);
             tv_titulo_ref = (TextView) itemView.findViewById(R.id.tv_titulo_ref_id);
             img_produto_thumbnail = (ImageView) itemView.findViewById(R.id.image_view_produto_id);
+            cardview = (CardView) itemView.findViewById(R.id.cardview_produto_id);
 
 
         }
