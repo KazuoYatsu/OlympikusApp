@@ -22,14 +22,14 @@
             android:orientation="vertical">
 
             <ImageView
-                android:id="@+id/produtothumbnail"
+                android:id="@+id/produto_thumbnail_id"
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:background="#2d2d2d"
                 android:scaleType="centerCrop" />
 
             <TextView
-
+                android:id="@+id/exibir_REF_id"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -41,6 +41,7 @@
                 android:textSize="14dp" />
 
             <TextView
+                android:id="@+id/exibir_descricao_id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -50,6 +51,7 @@
                 android:textSize="26dp" />
 
             <Button
+                android:id="@+id/btnEditarPostar"
                 android:text="Editar e postar"
                 android:textColor="@color/colorPrimary"
                 android:backgroundTint="@color/colorGray"
