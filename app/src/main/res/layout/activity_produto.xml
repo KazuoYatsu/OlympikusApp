@@ -41,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="8dp"
-                android:background="@color/colorGray"
+                android:backgroundTint="@color/colorGray"
                 android:padding="10dp"
                 android:text="REF.:X99-9999-9999-999"
                 android:textColor="@color/colorPrimary"
@@ -63,10 +63,12 @@
                 android:layout_height="80dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="100dp"
-                android:backgroundTint="@color/colorGray"
+                android:background="@color/colorGray"
+                android:backgroundTint="@color/colorGrayLight"
+
                 android:paddingTop="10dp"
                 android:text="Editar e postar"
-                android:textColor="@color/colorPrimary" />
+                android:textColor="@color/colorPrimaryDark" />
 
         </LinearLayout>
 
