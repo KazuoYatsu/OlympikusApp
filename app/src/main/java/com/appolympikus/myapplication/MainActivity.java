@@ -21,7 +21,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    List<Produto> lsProduto;
+    private List<Produto> lsProduto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity
         if (id == R.id.nav_banners) {
             // Handle the camera action
             //carregarListaProdutos();
+
         } else if (id == R.id.nav_videos) {
 
         } else if (id == R.id.nav_roupas) {

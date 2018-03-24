@@ -51,7 +51,7 @@
                 android:textSize="26dp" />
 
             <Button
-                android:id="@+id/btnEditarPostar"
+                android:id="@+id/btnEditarPostar_id"
                 android:text="Editar e postar"
                 android:textColor="@color/colorPrimary"
                 android:backgroundTint="@color/colorGray"
