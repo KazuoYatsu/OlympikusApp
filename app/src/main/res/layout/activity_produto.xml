@@ -45,9 +45,19 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
                 android:layout_marginTop="2dp"
-                android:padding="2dp"
+                android:padding="10dp"
                 android:text="Tenis Olympikus Flix 2 Feminino - Preto e Pink"
                 android:textSize="26dp" />
+
+            <Button
+                android:text="Editar e postar"
+                android:textColor="@color/colorPrimary"
+                android:backgroundTint="@color/colorGray"
+                android:paddingTop="10dp"
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="80dp" />
 
         </LinearLayout>
 
