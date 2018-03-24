@@ -1,6 +1,7 @@
 package com.appolympikus.myapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -36,13 +37,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(MyViewHolder holder, final int position) {
 
         holder.tv_titulo_ref.setText(mData.get(position).getTitulo_ref());
         holder.img_produto_thumbnail.setImageResource(mData.get(position).getThumbnail());
         holder.cardview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+                //Enviar informacao da pagina de galeria para a pagina de detalhe do produto
+                Intent intent = new Intent(mContext, ProdutoActivity.class);
+                intent.putExtra("titulo_ref", mData.get(position).getTitulo_ref());
+                intent.putExtra("descricao_produto", mData.get(position).getDescricao());
+                intent.putExtra("thumbnail", mData.get(position).getThumbnail());
+                //Iniciar nova pagina 
+                mContext.startActivity(intent);
                 
             }
         });
