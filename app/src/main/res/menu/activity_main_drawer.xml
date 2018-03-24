@@ -3,24 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
-    <group android:checkableBehavior="single">
-        <item
-            android:id="@+id/nav_camera"
+    <item android:title="Masculino">
+        <menu>
+            <item
+                android:id="@+id/nav_banners"
+                android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:title="Banners" />
+            <item
+                android:id="@+id/nav_videos"
+                android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:title="Videos" />
 
-            android:title="Masculinos" />
-        <item
-            android:id="@+id/nav_gallery"
+            <item
+                android:id="@+id/nav_calcados"
+                android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:title="Calçados" />
+            <item
+                android:id="@+id/nav_roupas"
+                android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:title="Roupas" />
 
-            android:title="Tennis" />
-        <item
-            android:id="@+id/nav_slideshow"
+            <item
+                android:id="@+id/nav_acess"
+                android:icon="@drawable/ic_keyboard_arrow_right_black_24dp"
+                android:title="Acessórios" />
 
-            android:title="Camisetas" />
-        <item
-            android:id="@+id/nav_manage"
 
-            android:title="Bones" />
-    </group>
+
+        </menu>
+    </item>
+
+
 
 
 
