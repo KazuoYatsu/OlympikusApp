@@ -32,8 +32,6 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         setContentView(R.layout.activity_produto);
         //487261
 
-
-
         //Encontrar os elementos no xml.
         tv_titulo_ref = (TextView) findViewById(R.id.exibir_REF_id);
         tv_descricao = (TextView) findViewById(R.id.exibir_descricao_id);
@@ -41,6 +39,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         btnshare = (Button) findViewById(R.id.btnEditarPostar_id);
 
         btnshare.setOnClickListener(this);
+
 
 
         //Receber data do Intent da pagina do Recycler.
@@ -56,12 +55,18 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
 
     }
 
-
-
     @Override
     public void onClick(View view) {
 
-        Intent intent = new Intent(mContext, EditarPostActivity.class);
-        mContext.startActivity(intent);
+        //Intent intent = new Intent(mContext, EditarPostActivity.class);
+        //mContext.startActivity(intent);
+
+        Intent intent = new Intent(getApplicationContext(), EditarPostActivity.class);
+        getApplicationContext().startActivity(intent);
+
+
+
     }
+
+
 }

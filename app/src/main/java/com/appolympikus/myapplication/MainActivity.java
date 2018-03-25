@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //Instanciar pagina de editar produtos.
+
 
         carregarListaProdutos();
 
@@ -42,10 +44,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-        //Carregar context do Editar
-        
-
 
 
     }
@@ -63,6 +61,7 @@ public class MainActivity extends AppCompatActivity
 
         RecyclerView myrv = (RecyclerView) findViewById(R.id.reciclerview_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, lsProduto);
+
 
         myrv.setLayoutManager(new GridLayoutManager(this,2));
         myrv.setAdapter(myAdapter);
@@ -117,9 +116,6 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_acess) {
 
         } 
-
-
-
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
