@@ -13,9 +13,7 @@
         android:id="@+id/editarproduto_id"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="64dp"
         android:background="#2d2d2d"
         android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +32,8 @@
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/editText2"
+        android:visibility="gone"/>
 
     <EditText
         android:id="@+id/editText2"
@@ -48,30 +47,32 @@
         android:text="Name"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editarproduto_id" />
+        app:layout_constraintTop_toBottomOf="@+id/editarproduto_id"
+        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btnAdicioarLocal"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roudedbutton"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnAdicionarLink"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/editText"
+        app:layout_constraintVertical_bias="0.497" />
 
     <Button
         android:id="@+id/btnAdicionarLink"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roudedbutton"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -82,11 +83,11 @@
         android:id="@+id/btnEditarValor_id"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roudedbutton"
-        android:text="Button"
+        android:text=""
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btnEditarPostar_id"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
@@ -95,11 +96,14 @@
         android:id="@+id/btnEditarPostar_id"
         android:layout_width="82dp"
         android:layout_height="79dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="2dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/roudedbutton"
-        android:text="Button"
+        android:text="Logo"
+        android:textSize="18dp"
+        android:textColor="@color/colorPrimary"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
