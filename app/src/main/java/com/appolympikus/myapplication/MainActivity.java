@@ -65,6 +65,7 @@ public class MainActivity extends AppCompatActivity
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
+
         // If using in a fragment
         //loginButton.setFragment(this);
 
