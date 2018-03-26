@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
 
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
@@ -81,6 +82,9 @@ public class MainActivity extends AppCompatActivity
                     }
                 });
 
+
+
+
         //Instanciar pagina de editar produtos.
 
         callbackManager = CallbackManager.Factory.create();
@@ -101,11 +105,6 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-
-
-
-
-
 
     }
 
