@@ -26,11 +26,23 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookCallback;
 import com.facebook.AccessToken;
 
+import android.content.pm.PackageManager;
+import android.content.pm.PackageManager.NameNotFoundException;
+import android.content.pm.PackageInfo;
+import android.content.pm.Signature;
+
+
 import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
+import android.util.Base64;
+import android.util.Log;
+
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,14 +62,21 @@ public class MainActivity extends AppCompatActivity
 
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
+        /*
+        try {
+            PackageInfo info = getPackageManager().getPackageInfo(
+                    "com.appolympikus.myapplication",
+                    PackageManager.GET_SIGNATURES);
+            for (Signature signature : info.signatures) {
+                MessageDigest md = MessageDigest.getInstance("SHA");
+                md.update(signature.toByteArray());
+                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
+            }
+        } catch (NameNotFoundException e) {
 
+        } catch (NoSuchAlgorithmException e) {
 
-
-
-
-
-
-
+        }*/
 
         //Instanciar pagina de editar produtos.
 
@@ -75,6 +94,7 @@ public class MainActivity extends AppCompatActivity
         //loginButton.setFragment(this);
 
         // Callback registration
+
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {

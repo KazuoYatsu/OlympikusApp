@@ -43,6 +43,12 @@ public class EditarPostActivity extends AppCompatActivity {
         btn_compartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Context context = getApplicationContext();
+                CharSequence text = "Hello Share Facebook!!!!!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
 
 
                 PostFB();
