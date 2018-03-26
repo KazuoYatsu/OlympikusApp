@@ -2,6 +2,8 @@ package com.appolympikus.myapplication;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.content.Intent;
+import com.facebook.CallbackManager;
 
 public class FacebookActivity extends AppCompatActivity {
 
@@ -10,4 +12,6 @@ public class FacebookActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_facebook);
     }
+
+
 }
