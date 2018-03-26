@@ -57,11 +57,9 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
 
         //Facebook
-        FacebookSdk.sdkInitialize(getApplicationContext());
-        AppEventsLogger.activateApp(this);
 
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
+
+
         /*
         try {
             PackageInfo info = getPackageManager().getPackageInfo(
@@ -80,14 +78,6 @@ public class MainActivity extends AppCompatActivity
 
         //Instanciar pagina de editar produtos.
 
-        callbackManager = CallbackManager.Factory.create();
-
-
-
-        loginButton = (LoginButton) findViewById(R.id.login_button);
-        loginButton.setReadPermissions("email");
-
-
 
 
         // If using in a fragment
@@ -95,47 +85,63 @@ public class MainActivity extends AppCompatActivity
 
         // Callback registration
 
-        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                // App code
-                Context context = getApplicationContext();
-                CharSequence text = "Hello toast!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-
-            @Override
-            public void onCancel() {
-                // App code
-            }
-
-            @Override
-            public void onError(FacebookException exception) {
-                // App code
-
-                Context context = getApplicationContext();
-                CharSequence text = "Erro ao conectar ao facebook, verifique sua conexão!";
-                int duration = Toast.LENGTH_SHORT;
-
-                Toast toast = Toast.makeText(context, text, duration);
-                toast.show();
-            }
-        });
 
 
 
-        boolean loggedInFacebook = AccessToken.getCurrentAccessToken() == null;
+        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+
+        if(loggedIn){
+            Log.d("Estou logado","Nao");
+            FacebookSdk.sdkInitialize(getApplicationContext());
+            //AppEventsLogger.activateApp(this);
+            callbackManager = CallbackManager.Factory.create();
+
+            loginButton = (LoginButton) findViewById(R.id.login_button);
+            loginButton.setReadPermissions("email");
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+
+
+            loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+                @Override
+                public void onSuccess(LoginResult loginResult) {
+                    // App code
+                    Context context = getApplicationContext();
+                    CharSequence text = "Hello toast!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+
+                @Override
+                public void onCancel() {
+                    // App code
+                }
+
+                @Override
+                public void onError(FacebookException exception) {
+                    // App code
+
+                    Context context = getApplicationContext();
+                    CharSequence text = "Erro ao conectar ao facebook, verifique sua conexão!";
+                    int duration = Toast.LENGTH_SHORT;
+
+                    Toast toast = Toast.makeText(context, text, duration);
+                    toast.show();
+                }
+            });
+
+
+        }else{
+
+            Log.d("Estou logado","Sim");
+
+
+        }
 
 
 
-        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
-        LoginManager.getInstance().logInWithPublishPermissions(
-                this,
-                Arrays.asList("publish_actions"));
 
         carregarListaProdutos();
 
