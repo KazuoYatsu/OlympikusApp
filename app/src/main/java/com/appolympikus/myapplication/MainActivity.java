@@ -107,7 +107,7 @@ public class MainActivity extends AppCompatActivity
 
 
 
-        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+        boolean loggedInFacebook = AccessToken.getCurrentAccessToken() == null;
 
 
 

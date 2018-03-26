@@ -7,7 +7,21 @@
 
     android:background="#3F3F3F"
     tools:context="com.appolympikus.myapplication.EditarPostActivity">
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
+
+        <Button
+            android:id="@+id/btn_compartilhar_id"
+            android:text="compartilhar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <com.facebook.share.widget.ShareButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
 
     <ImageView
         android:id="@+id/img_thumbnail_editar_id"
