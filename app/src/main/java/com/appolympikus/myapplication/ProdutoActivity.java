@@ -16,6 +16,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
     private TextView tv_titulo_ref, tv_descricao;
     private ImageView img_thumbnail;
     private Button btnshare;
+    private int image;
 
     private Context mContext;
 
@@ -31,6 +32,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_produto);
         //487261
+        getSupportActionBar().hide();
 
         //Encontrar os elementos no xml.
         tv_titulo_ref = (TextView) findViewById(R.id.exibir_REF_id);
@@ -46,7 +48,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         Intent intent = getIntent();
         String Titulo_REF = intent.getExtras().getString("titulo_ref");
         String Descricao = intent.getExtras().getString("descricao_produto");
-        int image = intent.getExtras().getInt("thumbnail");
+        image = intent.getExtras().getInt("thumbnail");
 
         //Setar os valores nos elemenots do XML.
         tv_titulo_ref.setText(Titulo_REF);
@@ -62,6 +64,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         //mContext.startActivity(intent);
 
         Intent intent = new Intent(getApplicationContext(), EditarPostActivity.class);
+        intent.putExtra("thumbnail_detail", image);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(intent);
 
