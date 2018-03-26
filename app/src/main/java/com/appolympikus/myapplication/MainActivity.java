@@ -24,10 +24,12 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.widget.LoginButton;
 import com.facebook.FacebookException;
 import com.facebook.FacebookCallback;
+import com.facebook.AccessToken;
 
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity
@@ -66,6 +68,9 @@ public class MainActivity extends AppCompatActivity
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.setReadPermissions("email");
 
+
+
+
         // If using in a fragment
         //loginButton.setFragment(this);
 
@@ -102,6 +107,15 @@ public class MainActivity extends AppCompatActivity
 
 
 
+        boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
+
+
+
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+
+        LoginManager.getInstance().logInWithPublishPermissions(
+                this,
+                Arrays.asList("publish_actions"));
 
         carregarListaProdutos();
 
