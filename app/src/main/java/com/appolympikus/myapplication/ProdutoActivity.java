@@ -2,14 +2,12 @@ package com.appolympikus.myapplication;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class ProdutoActivity extends AppCompatActivity implements  View.OnClickListener {
 
@@ -36,7 +34,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         tv_titulo_ref = (TextView) findViewById(R.id.exibir_REF_id);
         tv_descricao = (TextView) findViewById(R.id.exibir_descricao_id);
         img_thumbnail = (ImageView) findViewById(R.id.produto_thumbnail_id);
-        btnshare = (Button) findViewById(R.id.btnEditarPostar_id);
+        btnshare = (Button) findViewById(R.id.btn_editar_logo_id);
 
         btnshare.setOnClickListener(this);
 
@@ -62,6 +60,7 @@ public class ProdutoActivity extends AppCompatActivity implements  View.OnClickL
         //mContext.startActivity(intent);
 
         Intent intent = new Intent(getApplicationContext(), EditarPostActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         getApplicationContext().startActivity(intent);
 
 
