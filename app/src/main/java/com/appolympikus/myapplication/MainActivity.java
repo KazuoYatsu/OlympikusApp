@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+
+
+
+
     }
 
     private void carregarListaProdutos() {
