@@ -1,5 +1,6 @@
 package com.appolympikus.myapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -24,6 +25,8 @@ import com.facebook.login.widget.LoginButton;
 import com.facebook.FacebookException;
 import com.facebook.FacebookCallback;
 
+import android.widget.Toast;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +50,35 @@ public class MainActivity extends AppCompatActivity
         loginButton.setReadPermissions("email");
 
 
+
+
+
+
+
+
+
+        //Instanciar pagina de editar produtos.
+
+        callbackManager = CallbackManager.Factory.create();
+
+
+
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.setReadPermissions("email");
+        // If using in a fragment
+        //loginButton.setFragment(this);
+
+        // Callback registration
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
                 // App code
+                Context context = getApplicationContext();
+                CharSequence text = "Hello toast!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
 
             @Override
@@ -61,33 +89,15 @@ public class MainActivity extends AppCompatActivity
             @Override
             public void onError(FacebookException exception) {
                 // App code
+
+                Context context = getApplicationContext();
+                CharSequence text = "Erro ao conectar ao facebook, verifique sua conexão!";
+                int duration = Toast.LENGTH_SHORT;
+
+                Toast toast = Toast.makeText(context, text, duration);
+                toast.show();
             }
         });
-
-        LoginManager.getInstance().registerCallback(callbackManager,
-                new FacebookCallback<LoginResult>() {
-                    @Override
-                    public void onSuccess(LoginResult loginResult) {
-                        // App code
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        // App code
-                    }
-
-                    @Override
-                    public void onError(FacebookException exception) {
-                        // App code
-                    }
-                });
-
-
-
-
-        //Instanciar pagina de editar produtos.
-
-        callbackManager = CallbackManager.Factory.create();
 
 
 
