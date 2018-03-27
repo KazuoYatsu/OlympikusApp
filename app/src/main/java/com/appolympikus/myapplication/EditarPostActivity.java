@@ -36,37 +36,38 @@ public class EditarPostActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        //Iniciar o SDK do facebook.
         setContentView(R.layout.activity_editar_post);
         FacebookSdk.sdkInitialize(getApplicationContext());
         //init fb
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
 
-        //getActionBar().hide();
+        //Remove a barra de titulo padrão
         getSupportActionBar().hide();
 
+
         imagem_post_rede_social = (ImageView) findViewById(R.id.img_thumbnail_editar_id);
+        //Pega a imagem do XML atraves do get Intent
         Intent intent = getIntent();
         int image = intent.getExtras().getInt("thumbnail_detail");
-
+        //Aplica a imagem na tela para o usuário visualizar.
         imagem_post_rede_social.setImageResource(image);
 
         btn_compartilhar = (Button) findViewById(R.id.btn_compartilhar_id);
-
         btn_compartilhar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+
                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                        .setQuote("This a useful link ")
-                        .setContentUrl("https://youtube.com")
+                        .setQuote("Valor do produto ")
+                        .setContentUrl(Uri.parse("https://youtube.com"))
                         .build();
 
-                if(ShareDialog.canShow(ShareLinkContent.Cla))
-
-
-
-
+                if(ShareDialog.canShow(ShareLinkContent.class)){
+                    shareDialog.show(linkContent);
+                }
 
 
             }
@@ -75,26 +76,6 @@ public class EditarPostActivity extends AppCompatActivity {
 
     }
 
-    private void PostFB(){
-        //Implementar a função post fb
-        Context context = getApplicationContext();
-        CharSequence text = "Hello Share Facebook!!!!!";
-        int duration = Toast.LENGTH_SHORT;
 
-        Toast toast = Toast.makeText(context, text, duration);
-        toast.show();
-        SharePhoto photo = new SharePhoto.Builder().setBitmap(imagem_post_rede_social.getDrawingCache()).build();
-        SharePhotoContent content = new SharePhotoContent.Builder().addPhoto(photo).build();
-        ShareDialog dialog = new ShareDialog(this);
-        if (dialog.canShow(SharePhotoContent.class)){
-            dialog.show(content);
-
-        }
-        else{
-            Log.d("Activity", "you cannot share photos :(");
-        }
-
-
-    }
 
 }

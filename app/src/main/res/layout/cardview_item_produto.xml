@@ -10,7 +10,6 @@
     android:layout_margin="5dp"
     android:layout_marginLeft="8dp"
     android:layout_marginTop="8dp"
-    android:layout_marginRight=""
     cardview:cardCornerRadius="0dp">
 
     <LinearLayout
@@ -23,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="130dp"
 
-            android:scaleType="centerInside"
+            android:scaleType="fitCenter"
             />
 
         <TextView
