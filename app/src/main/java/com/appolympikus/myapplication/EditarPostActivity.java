@@ -56,18 +56,31 @@ public class EditarPostActivity extends AppCompatActivity {
 
         btn_compartilhar = (Button) findViewById(R.id.btn_compartilhar_id);
         btn_compartilhar.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
 
+                Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
+
+                SharePhoto imagem_produto = new SharePhoto.Builder()
+                        .setBitmap(foto_facebook)
+                        .build();
+
+                String url_compartilhar = "https://www.olympikus.com.br/";
 
                 ShareLinkContent linkContent = new ShareLinkContent.Builder()
                         .setQuote("Valor do produto ")
-                        .setContentUrl(Uri.parse("https://youtube.com"))
+                        .setContentUrl(Uri.parse(url_compartilhar))
                         .build();
 
-                if(ShareDialog.canShow(ShareLinkContent.class)){
-                    shareDialog.show(linkContent);
-                }
+                ShareContent shareContent = new ShareMediaContent.Builder()
+                        .addMedium(sharePhoto1)
+                        .addMedium(sharePhoto2)
+                        .build();
+
+
+
 
 
             }
@@ -76,6 +89,19 @@ public class EditarPostActivity extends AppCompatActivity {
 
     }
 
+    private void compartilharLink() {
+
+        String url_compartilhar = "www.google.com.br";
+
+        ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                .setQuote("Valor do produto ")
+                .setContentUrl(Uri.parse(url_compartilhar))
+                        .build();
+
+        if(ShareDialog.canShow(ShareLinkContent.class)){
+            shareDialog.show(linkContent);
+        }
+    }
 
 
 }
