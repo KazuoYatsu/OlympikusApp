@@ -3,6 +3,7 @@ package com.appolympikus.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.share.Share;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.ShareLinkContent;
@@ -24,14 +26,36 @@ import com.facebook.share.widget.ShareDialog;
 import com.facebook.FacebookSdk;
 
 
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+
 public class EditarPostActivity extends AppCompatActivity {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar, btn_compartilhar_video, btn_voltar;
+    private Button btn_compartilhar, btn_compartilhar_foto, btn_voltar;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
-    @Override
+
+    Target target = new Target() {
+        @Override
+        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
+            
+
+        }
+
+        @Override
+        public void onBitmapFailed(Drawable errorDrawable) {
+
+        }
+
+        @Override
+        public void onPrepareLoad(Drawable placeHolderDrawable) {
+
+        }
+    };
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Iniciar o SDK do facebook.
@@ -53,7 +77,7 @@ public class EditarPostActivity extends AppCompatActivity {
         imagem_post_rede_social.setImageResource(image);
 
         btn_compartilhar = (Button) findViewById(R.id.btn_compartilhar_id);
-        btn_compartilhar_video = (Button) findViewById(R.id.btn_compartilhar_foto_id);
+        btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
 
         btn_compartilhar.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +92,7 @@ public class EditarPostActivity extends AppCompatActivity {
             }
         });
 
-        btn_compartilhar_video.setOnClickListener(new View.OnClickListener() {
+        btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 compartilharFoto();
@@ -86,31 +110,12 @@ public class EditarPostActivity extends AppCompatActivity {
 
     }
 
-    private void compartilharFoto(){
+    private void compartilharFoto() {
 
-        Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
+        //Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
 
-        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-            @Override
-            public void onSuccess(Sharer.Result result) {
-                Toast.makeText(EditarPostActivity.this, "compartilhado com sucesso", Toast.LENGTH_SHORT).show();
 
-            }
 
-            @Override
-            public void onCancel() {
-
-                Toast.makeText(EditarPostActivity.this, "compartilhamento cancelado", Toast.LENGTH_SHORT).show();
-
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-
-                Toast.makeText(EditarPostActivity.this, "Erro ao compartilhar", Toast.LENGTH_SHORT).show();
-
-            }
-        });
 
     }
 
