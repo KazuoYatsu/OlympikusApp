@@ -1,22 +1,20 @@
 package com.appolympikus.myapplication;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.content.Context;
 import android.net.Uri;
-import android.widget.Toast;import android.content.Context;
 import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.share.Sharer;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhotoContent;
@@ -29,7 +27,7 @@ import com.facebook.FacebookSdk;
 public class EditarPostActivity extends AppCompatActivity {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar;
+    private Button btn_compartilhar, btn_compartilhar_video, btn_voltar;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -55,37 +53,64 @@ public class EditarPostActivity extends AppCompatActivity {
         imagem_post_rede_social.setImageResource(image);
 
         btn_compartilhar = (Button) findViewById(R.id.btn_compartilhar_id);
+        btn_compartilhar_video = (Button) findViewById(R.id.btn_compartilhar_foto_id);
+        btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
+
         btn_compartilhar.setOnClickListener(new View.OnClickListener() {
 
 
             @Override
             public void onClick(View view) {
 
-                Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
-
-                SharePhoto imagem_produto = new SharePhoto.Builder()
-                        .setBitmap(foto_facebook)
-                        .build();
-
-                String url_compartilhar = "https://www.olympikus.com.br/";
-
-                ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                        .setQuote("Valor do produto ")
-                        .setContentUrl(Uri.parse(url_compartilhar))
-                        .build();
-
-                ShareContent shareContent = new ShareMediaContent.Builder()
-                        .addMedium(sharePhoto1)
-                        .addMedium(sharePhoto2)
-                        .build();
-
-
-
+                compartilharLink();
 
 
             }
         });
 
+        btn_compartilhar_video.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                compartilharFoto();
+            }
+        });
+
+        btn_voltar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               finishActivity(0);
+
+            }
+        });
+
+
+    }
+
+    private void compartilharFoto(){
+
+        Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
+
+        shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+            @Override
+            public void onSuccess(Sharer.Result result) {
+                Toast.makeText(EditarPostActivity.this, "compartilhado com sucesso", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onCancel() {
+
+                Toast.makeText(EditarPostActivity.this, "compartilhamento cancelado", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+
+                Toast.makeText(EditarPostActivity.this, "Erro ao compartilhar", Toast.LENGTH_SHORT).show();
+
+            }
+        });
 
     }
 

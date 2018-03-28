@@ -7,12 +7,30 @@
 
     android:background="#3F3F3F"
     tools:context="com.appolympikus.myapplication.EditarPostActivity">
+
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteY="8dp">
 
 
+        <Button
+            android:id="@+id/btn_compartilhar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Share" />
 
+        <Button
+            android:id="@+id/btn_compartilhar_foto_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" Share Foto" />
+        <Button
+            android:id="@+id/btn_toolbar_voltar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voltar" />
 
 
     </android.support.v7.widget.Toolbar>
@@ -77,12 +95,6 @@
         app:layout_constraintStart_toEndOf="@+id/btn_add_link_id2"
         app:layout_constraintTop_toBottomOf="@+id/edt_link_produto_id"
         app:layout_constraintVertical_bias="0.49" />
-
-    <Button
-        android:id="@+id/btn_compartilhar_id"
-        android:text="compartilhar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <Button
         android:id="@+id/btn_add_link_id2"
