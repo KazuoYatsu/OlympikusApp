@@ -15,22 +15,20 @@
         tools:layout_editor_absoluteY="8dp">
 
 
-        <Button
-            android:id="@+id/btn_compartilhar_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Share" />
+
 
         <Button
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text=" Share Foto" />
+
         <Button
             android:id="@+id/btn_toolbar_voltar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Voltar" />
+
 
 
     </android.support.v7.widget.Toolbar>

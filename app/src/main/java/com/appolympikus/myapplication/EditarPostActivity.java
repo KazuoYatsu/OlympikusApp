@@ -33,7 +33,7 @@ import com.squareup.picasso.Target;
 public class EditarPostActivity extends AppCompatActivity {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar, btn_compartilhar_foto, btn_voltar;
+    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -86,21 +86,11 @@ public class EditarPostActivity extends AppCompatActivity {
         //Aplica a imagem na tela para o usuário visualizar.
         imagem_post_rede_social.setImageResource(image);
 
-        btn_compartilhar = (Button) findViewById(R.id.btn_compartilhar_id);
+        //Toolbar da pagina
         btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
 
-        btn_compartilhar.setOnClickListener(new View.OnClickListener() {
 
-
-            @Override
-            public void onClick(View view) {
-
-                compartilharLink();
-
-
-            }
-        });
 
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,46 +116,21 @@ public class EditarPostActivity extends AppCompatActivity {
 
                     }
                 });
+                String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
 
                 Picasso.with(getBaseContext())
-                        .load("https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*")
+                        .load(url_imagem)
                         .into(target);
+
+                //Toast.makeText(EditarPostActivity.this, "cliquei", Toast.LENGTH_LONG).show();
             }
         });
 
-        btn_voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               finishActivity(0);
-
-            }
-        });
-
-
     }
 
-    private void compartilharFoto() {
-
-        //Bitmap foto_facebook = BitmapFactory.decodeResource(getResources(), R.id.img_thumbnail_editar_id);
 
 
 
-
-    }
-
-    private void compartilharLink() {
-
-        String url_compartilhar = "www.google.com.br";
-
-        ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                .setQuote("Valor do produto ")
-                .setContentUrl(Uri.parse(url_compartilhar))
-                        .build();
-
-        if(ShareDialog.canShow(ShareLinkContent.class)){
-            shareDialog.show(linkContent);
-        }
-    }
 
 
 }
