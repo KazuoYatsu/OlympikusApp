@@ -45,8 +45,9 @@
             </intent-filter>
         </activity>
         <activity android:name=".FacebookActivity" />
+
         <activity android:name=".CustomTabActivity"></activity>
-        <provider android:authorities="com.facebook.app.FacebookContentProvider{200218667235353}"
+        <provider android:authorities="com.facebook.app.FacebookContentProvider200218667235353"
             android:name="com.facebook.FacebookContentProvider"
             android:exported="true"/>
     </application>

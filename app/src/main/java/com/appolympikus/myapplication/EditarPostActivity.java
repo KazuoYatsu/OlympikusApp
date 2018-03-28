@@ -41,7 +41,17 @@ public class EditarPostActivity extends AppCompatActivity {
     Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            
+            SharePhoto sharePhoto = new SharePhoto.Builder()
+                    .setBitmap(bitmap)
+                    .build();
+            if(ShareDialog.canShow(SharePhotoContent.class)){
+                SharePhotoContent content = new SharePhotoContent.Builder()
+                        .addPhoto(sharePhoto)
+                        .build();
+
+                shareDialog.show(content);
+            }
+
 
         }
 
@@ -95,7 +105,31 @@ public class EditarPostActivity extends AppCompatActivity {
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                compartilharFoto();
+
+
+                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                    @Override
+                    public void onSuccess(Sharer.Result result) {
+                        Toast.makeText(EditarPostActivity.this, "Compartilhado com sucesso", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(EditarPostActivity.this, "Compartilhamento cancelado", Toast.LENGTH_LONG).show();
+
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(EditarPostActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+                Picasso.with(getBaseContext())
+                        .load("https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*")
+                        .into(target);
             }
         });
 
