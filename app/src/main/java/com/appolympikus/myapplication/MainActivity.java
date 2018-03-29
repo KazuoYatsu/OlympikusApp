@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 
             loginButton = (LoginButton) findViewById(R.id.login_button);
             loginButton.setReadPermissions("email");
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","publish_actions"));
 
 
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {

@@ -17,9 +17,16 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.share.Share;
 import com.facebook.share.Sharer;
+import com.facebook.share.model.ShareContent;
+import com.facebook.share.model.ShareHashtag;
+import com.facebook.share.model.ShareMediaContent;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhotoContent;
+import com.facebook.share.model.ShareOpenGraphObject;
+import com.facebook.share.model.ShareOpenGraphAction;
+import com.facebook.share.model.ShareOpenGraphContent;
+
 import com.facebook.share.widget.ShareDialog;
 
 
@@ -41,16 +48,58 @@ public class EditarPostActivity extends AppCompatActivity {
     Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-            SharePhoto sharePhoto = new SharePhoto.Builder()
-                    .setBitmap(bitmap)
-                    .build();
-            if(ShareDialog.canShow(SharePhotoContent.class)){
-                SharePhotoContent content = new SharePhotoContent.Builder()
-                        .addPhoto(sharePhoto)
-                        .build();
 
-                shareDialog.show(content);
-            }
+            String url_link_loja = "https://www.centauro.com.br/tenis-olympikus-love-feminino-887290.html?cupomId=ab4b58e8-7af6-44f8-b5e6-219d66bb4fc9&cor=02&=Cal%C3%A7ados-Corrida-/-Caminhada-Olympikus-887290-02&origem=google_kenshoo&utm_source=google_gs&utm_medium=SCH_NOB_PLA_Cal%C3%A7ados-Corrida&utm_campaign=all\\cal%C3%A7ados\\corrida%20/%20caminhada\\olympikus\\88729002&gclid=Cj0KCQjw-uzVBRDkARIsALkZAdkCQjdacScDds-sMSjKJymuOAlxOItkQ8ZykBmxGPMIOnAotQQTfw4aAj3YEALw_wcB";
+            ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
+            hashtag.setHashtag("#Olympikus");
+            String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
+
+            /*
+
+
+
+            ShareLinkContent linkContent = new ShareLinkContent.Builder()
+                    .setContentUrl(Uri.parse("https://developers.facebook.com"))
+                    .setQuote(url_imagem)
+                    .setShareHashtag(hashtag.build())
+                    .build();
+
+
+            SharePhotoContent photoContent = new SharePhotoContent.Builder()
+                    .setShareHashtag(hashtag.build())
+                    .addPhoto(sharePhoto)
+                    .build();*/
+
+
+            SharePhoto photo = new SharePhoto.Builder()
+                    .setBitmap(bitmap)
+                    .setUserGenerated(true)
+                    .build();
+
+            ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
+                    .putString("og:type", "books.book")
+                    .putString("og:title", "Titulo do produto")
+                    .putString("og:description", "Descricao do produto")
+                    .build();
+
+            ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
+                    .setActionType("books.reads")
+                    .putObject("book", object)
+                    .putPhoto("og:image", photo)
+                    .build();
+
+            ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
+                    .setPreviewPropertyName("book")
+                    .setAction(action)
+                    .build();
+
+
+            shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
+
+
+
+
+
 
 
         }
@@ -122,10 +171,16 @@ public class EditarPostActivity extends AppCompatActivity {
                         .load(url_imagem)
                         .into(target);
 
-                //Toast.makeText(EditarPostActivity.this, "cliquei", Toast.LENGTH_LONG).show();
+
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
 
