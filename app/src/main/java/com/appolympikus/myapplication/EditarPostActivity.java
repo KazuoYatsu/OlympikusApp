@@ -55,7 +55,7 @@ import com.squareup.picasso.Target;
 import java.io.IOException;
 
 
-public class EditarPostActivity extends AppCompatActivity implements DialogoValores.DialogoValoresListener{
+public class EditarPostActivity extends AppCompatActivity implements DialogoValores.DialogoValoresListener,DialogoLinkLoja.DialogoValoresListener {
 
     private ImageView imagem_post_rede_social;
     private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo, btn_add_valor;
@@ -223,6 +223,12 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         drawTextToBitmap(this,bmFinal, numeroParcelas);
 
 
+
+    }
+
+    @Override
+    public void aplicarStrings(String urlLoja) {
+        Log.d("TAG_URLLOJA", urlLoja);
 
     }
 
