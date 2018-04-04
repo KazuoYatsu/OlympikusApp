@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity
 
             loginButton = (LoginButton) findViewById(R.id.login_button);
             loginButton.setReadPermissions("email");
-            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile","publish_actions"));
+            LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("public_profile"));
 
 
             loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
@@ -106,7 +106,7 @@ public class MainActivity extends AppCompatActivity
                 public void onSuccess(LoginResult loginResult) {
                     // App code
                     Context context = getApplicationContext();
-                    CharSequence text = "Hello toast!";
+                    CharSequence text = "Hello face!";
                     int duration = Toast.LENGTH_SHORT;
 
                     Toast toast = Toast.makeText(context, text, duration);

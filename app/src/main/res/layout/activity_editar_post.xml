@@ -75,7 +75,7 @@
         android:visibility="gone"/>
 
     <Button
-        android:id="@+id/btn_add_link_id"
+        android:id="@+id/btn_add_local_id"
         android:layout_width="82dp"
         android:layout_height="79dp"
 

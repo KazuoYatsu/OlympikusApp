@@ -3,7 +3,9 @@ package com.appolympikus.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,10 +13,15 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.net.Uri;
 import android.widget.Toast;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
 
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphResponse;
+import com.facebook.HttpMethod;
 import com.facebook.share.Share;
 import com.facebook.share.Sharer;
 import com.facebook.share.model.ShareContent;
@@ -26,6 +33,8 @@ import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.model.ShareOpenGraphObject;
 import com.facebook.share.model.ShareOpenGraphAction;
 import com.facebook.share.model.ShareOpenGraphContent;
+import com.facebook.GraphRequest;
+
 
 import com.facebook.share.widget.ShareDialog;
 
@@ -36,69 +45,50 @@ import com.facebook.FacebookSdk;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.IOException;
+
 
 public class EditarPostActivity extends AppCompatActivity {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link;
+    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
+
+    private Bitmap logoOverlay;
+    private Bitmap bmFinal;
+
+    private static final int PICK_IMAGE = 100;
 
 
     Target target = new Target() {
         @Override
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 
-            String url_link_loja = "https://www.centauro.com.br/tenis-olympikus-love-feminino-887290.html?cupomId=ab4b58e8-7af6-44f8-b5e6-219d66bb4fc9&cor=02&=Cal%C3%A7ados-Corrida-/-Caminhada-Olympikus-887290-02&origem=google_kenshoo&utm_source=google_gs&utm_medium=SCH_NOB_PLA_Cal%C3%A7ados-Corrida&utm_campaign=all\\cal%C3%A7ados\\corrida%20/%20caminhada\\olympikus\\88729002&gclid=Cj0KCQjw-uzVBRDkARIsALkZAdkCQjdacScDds-sMSjKJymuOAlxOItkQ8ZykBmxGPMIOnAotQQTfw4aAj3YEALw_wcB";
+            String url_link_loja = "www.centauro.com.br";
             ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
-            hashtag.setHashtag("#Olympikus");
+            hashtag.setHashtag("#OlympikusNovaHash");
             String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
 
-            /*
+            //Pegar imagem da pagina.
+            imagem_post_rede_social.buildDrawingCache();
+            Bitmap bmap = imagem_post_rede_social.getDrawingCache();
 
+            //Bitmap do picasso setBitmap(bitmap)
 
-
-            ShareLinkContent linkContent = new ShareLinkContent.Builder()
-                    .setContentUrl(Uri.parse("https://developers.facebook.com"))
-                    .setQuote(url_imagem)
-                    .setShareHashtag(hashtag.build())
-                    .build();
-
-
-            SharePhotoContent photoContent = new SharePhotoContent.Builder()
-                    .setShareHashtag(hashtag.build())
-                    .addPhoto(sharePhoto)
-                    .build();*/
-
-
+            //Foto a ser compartilhada
             SharePhoto photo = new SharePhoto.Builder()
-                    .setBitmap(bitmap)
+                    .setBitmap(bmFinal)
                     .setUserGenerated(true)
                     .build();
-
-            ShareOpenGraphObject object = new ShareOpenGraphObject.Builder()
-                    .putString("og:type", "books.book")
-                    .putString("og:title", "Titulo do produto")
-                    .putString("og:description", "Descricao do produto")
-                    .build();
-
-            ShareOpenGraphAction action = new ShareOpenGraphAction.Builder()
-                    .setActionType("books.reads")
-                    .putObject("book", object)
-                    .putPhoto("og:image", photo)
-                    .build();
-
-            ShareOpenGraphContent content = new ShareOpenGraphContent.Builder()
-                    .setPreviewPropertyName("book")
-                    .setAction(action)
+            SharePhotoContent photoContent = new SharePhotoContent.Builder()
+                    .addPhoto(photo)
+                    .setShareHashtag(hashtag.build())
+                    .setPlaceId("Mecs Bar")
                     .build();
 
 
-            shareDialog.show(content, ShareDialog.Mode.AUTOMATIC);
-
-
-
-
+            shareDialog.show(photoContent);
 
 
 
@@ -114,6 +104,8 @@ public class EditarPostActivity extends AppCompatActivity {
 
         }
     };
+
+
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -137,8 +129,12 @@ public class EditarPostActivity extends AppCompatActivity {
 
         //Toolbar da pagina
         btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
+
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
 
+        btn_local = (Button) findViewById(R.id.btn_add_local_id);
+
+        btn_add_logo = (Button) findViewById(R.id.btn_editar_logo_id);
 
 
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
@@ -175,12 +171,69 @@ public class EditarPostActivity extends AppCompatActivity {
             }
         });
 
+
+        btn_add_logo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Toast.makeText(EditarPostActivity.this, "Selecione uma foto do device", Toast.LENGTH_LONG).show();
+
+                AbrirGaleria();
+
+            }
+        });
+
+    }
+
+    private void AbrirGaleria() {
+
+        //Pegar imagem da pagina.
+
+
+        Intent galeria = new Intent(Intent.ACTION_GET_CONTENT);
+        galeria.setType("image/*");
+        startActivityForResult(galeria,1);
+
+        //Sobrepor a imagem da galeria
+        //imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
+
+
+
+
+    }
+    private Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
+        Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
+        Canvas canvas = new Canvas(bmOverlay);
+        canvas.drawBitmap(bmp1, new Matrix(), null);
+        canvas.drawBitmap(bmp2, new Matrix(), null);
+        return bmOverlay;
     }
 
     @Override
     protected void onActivityResult(final int requestCode, final int resultCode, final Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+
+        if (resultCode == RESULT_OK)
+        {
+            Uri chosenImageUri = data.getData();
+
+            Bitmap mBitmap = null;
+            try {
+                mBitmap = MediaStore.Images.Media.getBitmap(this.getContentResolver(), chosenImageUri);
+                logoOverlay = mBitmap;
+                imagem_post_rede_social.buildDrawingCache();
+                Bitmap bmap = imagem_post_rede_social.getDrawingCache();
+                imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
+                bmFinal = overlay(bmap,logoOverlay);
+
+
+
+                Toast.makeText(EditarPostActivity.this, "Imagem Aplicada", Toast.LENGTH_LONG).show();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
