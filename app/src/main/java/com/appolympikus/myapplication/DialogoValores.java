@@ -41,7 +41,7 @@ public class DialogoValores extends AppCompatDialogFragment {
         editTextNumeroParcelas = view.findViewById(R.id.edit_valor_nparcelas_id);
         editTextValorParcela = view.findViewById(R.id.edit_valor_parcela_id);
 
-        
+
 
         return builder.create();
     }

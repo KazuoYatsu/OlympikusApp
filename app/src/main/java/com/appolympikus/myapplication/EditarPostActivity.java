@@ -202,6 +202,9 @@ public class EditarPostActivity extends AppCompatActivity {
 
     private void abrirDialogoEditarValores(){
 
+        DialogoValores dialogoValores = new DialogoValores();
+        dialogoValores.show(getSupportFragmentManager(),"Dialogo Valores");
+
 
     }
 
