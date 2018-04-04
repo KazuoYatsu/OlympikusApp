@@ -11,6 +11,7 @@
         android:inputType="textUri"
         android:background="@color/colorGrayLight"
         android:textColor="@color/colorPrimary"
+        android:textSize="30dp"
         android:hint="http://"
         />
 

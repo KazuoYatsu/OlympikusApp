@@ -2,7 +2,6 @@ package com.appolympikus.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
@@ -20,27 +19,15 @@ import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.Rect;
-import android.content.res.Resources;
 import android.content.Context;
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.GraphResponse;
-import com.facebook.HttpMethod;
-import com.facebook.share.Share;
 import com.facebook.share.Sharer;
-import com.facebook.share.model.ShareContent;
 import com.facebook.share.model.ShareHashtag;
-import com.facebook.share.model.ShareMediaContent;
 import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhotoContent;
-import com.facebook.share.model.ShareOpenGraphObject;
-import com.facebook.share.model.ShareOpenGraphAction;
-import com.facebook.share.model.ShareOpenGraphContent;
-import com.facebook.GraphRequest;
 
 
 import com.facebook.share.widget.ShareDialog;
@@ -58,7 +45,7 @@ import java.io.IOException;
 public class EditarPostActivity extends AppCompatActivity implements DialogoValores.DialogoValoresListener,DialogoLinkLoja.DialogoValoresListener {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo, btn_add_valor;
+    private Button btn_compartilhar_foto, btn_voltar,btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -141,12 +128,13 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
 
-        btn_local = (Button) findViewById(R.id.btn_add_local_id);
+        btn_add_local = (Button) findViewById(R.id.btn_add_local_id);
 
         btn_add_logo = (Button) findViewById(R.id.btn_editar_logo_id);
 
         btn_add_valor = (Button) findViewById(R.id.btn_editar_valor_id);
 
+        btn_add_link = (Button) findViewById(R.id.btn_add_link_id);
 
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -204,6 +192,22 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         });
 
 
+        btn_add_link.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Toast.makeText(EditarPostActivity.this, "Selecione um link", Toast.LENGTH_LONG).show();
+                abrirDialogoLink();
+
+            }
+        });
+
+
+
+
+
+
+
     }
 
     private void abrirDialogoEditarValores(){
@@ -212,6 +216,11 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         dialogoValores.show(getSupportFragmentManager(),"Dialogo Valores");
 
 
+    }
+
+    private void abrirDialogoLink(){
+        DialogoLinkLoja dialogoLinkLoja = new DialogoLinkLoja();
+        dialogoLinkLoja.show(getSupportFragmentManager(), "Dialogo link");
     }
 
     @Override

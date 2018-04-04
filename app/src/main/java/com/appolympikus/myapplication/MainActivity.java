@@ -56,38 +56,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //Facebook
-
-
-
-        /*
-        try {
-            PackageInfo info = getPackageManager().getPackageInfo(
-                    "com.appolympikus.myapplication",
-                    PackageManager.GET_SIGNATURES);
-            for (Signature signature : info.signatures) {
-                MessageDigest md = MessageDigest.getInstance("SHA");
-                md.update(signature.toByteArray());
-                Log.d("KeyHash:", Base64.encodeToString(md.digest(), Base64.DEFAULT));
-            }
-        } catch (NameNotFoundException e) {
-
-        } catch (NoSuchAlgorithmException e) {
-
-        }*/
-
-        //Instanciar pagina de editar produtos.
-
-
-
-        // If using in a fragment
-        //loginButton.setFragment(this);
-
-        // Callback registration
-
-
-
-
         boolean loggedIn = AccessToken.getCurrentAccessToken() == null;
 
         if(loggedIn){
@@ -141,11 +109,6 @@ public class MainActivity extends AppCompatActivity
 
 
         }
-
-
-
-
-
         carregarListaProdutos();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -221,8 +184,7 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_banners) {
-            // Handle the camera action
-            //carregarListaProdutos();
+
 
         } else if (id == R.id.nav_videos) {
 

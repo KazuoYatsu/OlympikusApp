@@ -22,7 +22,7 @@ public class DialogoLinkLoja extends AppCompatDialogFragment {
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
-        View view = inflater.inflate(R.layout.dialogo_valores, null);
+        View view = inflater.inflate(R.layout.dialogo_link_loja, null);
 
         builder.setView(view)
                 .setTitle("")
