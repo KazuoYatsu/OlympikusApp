@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.widget.Toast;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
+import android.graphics.RectF;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -51,12 +52,14 @@ import java.io.IOException;
 public class EditarPostActivity extends AppCompatActivity {
 
     private ImageView imagem_post_rede_social;
-    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo;
+    private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
     private Bitmap logoOverlay;
     private Bitmap bmFinal;
+
+    private String texto_valor, texto_parcelas;
 
     private static final int PICK_IMAGE = 100;
 
@@ -136,6 +139,8 @@ public class EditarPostActivity extends AppCompatActivity {
 
         btn_add_logo = (Button) findViewById(R.id.btn_editar_logo_id);
 
+        btn_add_valor = (Button) findViewById(R.id.btn_editar_valor_id);
+
 
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,13 +188,26 @@ public class EditarPostActivity extends AppCompatActivity {
             }
         });
 
+        btn_add_valor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                abrirDialogoEditarValores();
+
+            }
+        });
+
+
+    }
+
+    private void abrirDialogoEditarValores(){
+
+
     }
 
     private void AbrirGaleria() {
 
         //Pegar imagem da pagina.
-
-
         Intent galeria = new Intent(Intent.ACTION_GET_CONTENT);
         galeria.setType("image/*");
         startActivityForResult(galeria,1);
@@ -197,15 +215,13 @@ public class EditarPostActivity extends AppCompatActivity {
         //Sobrepor a imagem da galeria
         //imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
 
-
-
-
     }
     private Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
-        canvas.drawBitmap(bmp2, new Matrix(), null);
+        //canvas.drawBitmap(bmp2, new Matrix(), null);
+        canvas.drawBitmap(bmp2, null, new RectF(20, 20, canvas.getWidth() / 3 , canvas.getHeight() / 2), null);
         return bmOverlay;
     }
 
@@ -214,7 +230,7 @@ public class EditarPostActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
 
-        if (resultCode == RESULT_OK)
+        if (resultCode == RESULT_OK && requestCode == 1)
         {
             Uri chosenImageUri = data.getData();
 
