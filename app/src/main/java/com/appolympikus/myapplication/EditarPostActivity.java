@@ -5,17 +5,23 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.Paint;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.net.Uri;
 import android.widget.Toast;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.RectF;
+import android.graphics.Rect;
+import android.content.res.Resources;
+import android.content.Context;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -49,7 +55,7 @@ import com.squareup.picasso.Target;
 import java.io.IOException;
 
 
-public class EditarPostActivity extends AppCompatActivity {
+public class EditarPostActivity extends AppCompatActivity implements DialogoValores.DialogoValoresListener{
 
     private ImageView imagem_post_rede_social;
     private Button btn_compartilhar_foto, btn_voltar,btn_compartilhar_link, btn_local, btn_add_logo, btn_add_valor;
@@ -208,6 +214,18 @@ public class EditarPostActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    public void aplicarStrings(String numeroParcelas, String valorParcela) {
+
+        Log.d("TAG_NUMPARCELAS", numeroParcelas);
+        Log.d("TAG_VALORPARCELAS", valorParcela);
+
+        drawTextToBitmap(this,bmFinal, numeroParcelas);
+
+
+
+    }
+
     private void AbrirGaleria() {
 
         //Pegar imagem da pagina.
@@ -219,6 +237,34 @@ public class EditarPostActivity extends AppCompatActivity {
         //imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
 
     }
+    public Bitmap drawTextToBitmap(Context gContext,
+                                   Bitmap bitmap,
+                                   String gText) {
+
+        float scale = bitmap.getDensity();
+        Bitmap bmOverlay = Bitmap.createBitmap(bitmap.getWidth(), bitmap.getHeight(), bitmap.getConfig());
+
+        Canvas canvas = new Canvas(bmOverlay);
+        // new antialised Paint
+        Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        // text color - #3D3D3D
+        paint.setColor(Color.rgb(61, 61, 61));
+        // text size in pixels
+        paint.setTextSize((int) (32 * scale));
+        // text shadow
+        paint.setShadowLayer(1f, 0f, 1f, Color.WHITE);
+
+        // draw text to the Canvas center
+        Rect bounds = new Rect();
+        paint.getTextBounds(gText, 0, gText.length(), bounds);
+        int x = (bitmap.getWidth() - bounds.width())/2;
+        int y = (bitmap.getHeight() + bounds.height())/2;
+
+        canvas.drawText(gText, x, y, paint);
+
+        return bitmap;
+    }
+
     private Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);

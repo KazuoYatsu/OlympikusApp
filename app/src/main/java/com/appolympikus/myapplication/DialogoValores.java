@@ -1,6 +1,7 @@
 package com.appolympikus.myapplication;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
@@ -14,6 +15,7 @@ public class DialogoValores extends AppCompatDialogFragment {
 
     private EditText editTextValorParcela;
     private EditText editTextNumeroParcelas;
+    private DialogoValoresListener listener;
 
 
     @Override
@@ -35,6 +37,11 @@ public class DialogoValores extends AppCompatDialogFragment {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
+                        String valorParcela = editTextValorParcela.getText().toString();
+                        String numeroParcelas = editTextNumeroParcelas.getText().toString();
+                        listener.aplicarStrings(numeroParcelas, valorParcela);
+
+
                     }
                 });
 
@@ -44,6 +51,22 @@ public class DialogoValores extends AppCompatDialogFragment {
 
 
         return builder.create();
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+
+        try {
+            listener = (DialogoValoresListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() +
+            "Must implement Listener ");
+        }
+    }
+
+    public interface DialogoValoresListener{
+        void aplicarStrings(String numeroParcelas, String valorParcela);
     }
 
 
