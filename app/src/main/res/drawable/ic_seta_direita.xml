@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 58 58"><defs><style>.cls-1{fill:#bebebe;}</style></defs><title>1-frente-test</title><g id="_Group_" data-name="&lt;Group&gt;"><path class="cls-1" d="M58,5,56.6,6,51,10V6H27a25,25,0,0,0,0,50H51v1.92c-.66.06-1.33.08-2,.08H27A27,27,0,0,1,27,4H51V0l6.4,4.57Z"/></g></svg>
+
+</selector>
