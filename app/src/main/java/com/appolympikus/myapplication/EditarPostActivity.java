@@ -106,7 +106,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Iniciar o SDK do facebook.
-        setContentView(R.layout.activity_editar_post);
+        setContentView(R.layout.activity_editar_logo);
         FacebookSdk.sdkInitialize(getApplicationContext());
         //init fb
         callbackManager = CallbackManager.Factory.create();
@@ -169,8 +169,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
             }
         });
-
-
         btn_add_logo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -181,7 +179,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
             }
         });
-
         btn_add_valor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -190,7 +187,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
             }
         });
-
 
         btn_add_link.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -201,13 +197,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
             }
         });
-
-
-
-
-
-
-
     }
 
     private void abrirDialogoEditarValores(){

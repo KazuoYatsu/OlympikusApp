@@ -50,6 +50,7 @@ public class MainActivity extends AppCompatActivity
     private List<Produto> lsProduto;
     private CallbackManager callbackManager;
     private LoginButton loginButton;
+    private Boolean LogadoNoDatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,11 +104,28 @@ public class MainActivity extends AppCompatActivity
             });
 
 
+
+
+
         }else{
 
             Log.d("Estou logado","Sim");
 
 
+        }
+
+
+        LogadoNoDatabase = false;
+
+        if(LogadoNoDatabase)
+        {
+
+        }
+        else
+        {
+
+            Toast.makeText(this, "Fazer Cadastro Activity", Toast.LENGTH_LONG).show();
+            //Log.d("TAG", )
         }
         carregarListaProdutos();
 
