@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.net.Uri;
 import android.widget.Toast;
@@ -45,6 +46,7 @@ import java.io.IOException;
 public class EditarPostActivity extends AppCompatActivity implements DialogoValores.DialogoValoresListener,DialogoLinkLoja.DialogoValoresListener {
 
     private ImageView imagem_post_rede_social;
+    private EditText txt_local, txt_link;
     private Button btn_compartilhar_foto, btn_voltar,btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
@@ -66,9 +68,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
             hashtag.setHashtag("#OlympikusNovaHash");
             String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
 
-            //Pegar imagem da pagina.
-            imagem_post_rede_social.buildDrawingCache();
-            Bitmap bmap = imagem_post_rede_social.getDrawingCache();
+
 
             //Bitmap do picasso setBitmap(bitmap)
 
@@ -106,8 +106,9 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Iniciar o SDK do facebook.
-        setContentView(R.layout.activity_editar_logo);
+        setContentView(R.layout.activity_editar_post);
         FacebookSdk.sdkInitialize(getApplicationContext());
+
         //init fb
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
@@ -123,19 +124,32 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         //Aplica a imagem na tela para o usuário visualizar.
         imagem_post_rede_social.setImageResource(image);
 
+
+        //Pegar imagem da pagina.
+        imagem_post_rede_social.buildDrawingCache();
+        //Guarda o bitmap para os botoes manusearem
+        bmFinal = imagem_post_rede_social.getDrawingCache();
+
+
         //Toolbar da pagina
         btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
-
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
-
+        //Botoes da pagina.
         btn_add_local = (Button) findViewById(R.id.btn_add_local_id);
-
         btn_add_logo = (Button) findViewById(R.id.btn_editar_logo_id);
-
         btn_add_valor = (Button) findViewById(R.id.btn_editar_valor_id);
-
         btn_add_link = (Button) findViewById(R.id.btn_add_link_id);
 
+        //Campos de texto da pagina.
+        txt_local = (EditText) findViewById(R.id.edt_local_id);
+        txt_link = (EditText) findViewById(R.id.edt_link_id);
+        //Ao iniciar , oculte os campos
+        txt_local.setVisibility(View.INVISIBLE);
+        txt_local.setEnabled(true);
+        txt_link.setVisibility(View.INVISIBLE);
+        txt_local.setEnabled(true);
+
+        //Eventos de click
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -173,7 +187,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
             @Override
             public void onClick(View view) {
 
-                //Toast.makeText(EditarPostActivity.this, "Selecione uma foto do device", Toast.LENGTH_LONG).show();
 
                 AbrirGaleria();
 
@@ -192,7 +205,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(EditarPostActivity.this, "Selecione um link", Toast.LENGTH_LONG).show();
+
                 abrirDialogoLink();
 
             }
@@ -217,9 +230,11 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
         Log.d("TAG_NUMPARCELAS", numeroParcelas);
         Log.d("TAG_VALORPARCELAS", valorParcela);
+        Bitmap bmp = ObterImagemAtual();
 
-        drawTextToBitmap(this,bmFinal, numeroParcelas);
+        //drawTextToBitmap(this, ObterImagemAtual(), numeroParcelas);
 
+        //overlay(ObterImagemAtual(), drawTextToBitmap(this, ObterImagemAtual(), numeroParcelas));
 
 
     }
@@ -227,8 +242,21 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
     @Override
     public void aplicarStrings(String urlLoja) {
         Log.d("TAG_URLLOJA", urlLoja);
+        txt_link.setText(urlLoja);
+        txt_link.setVisibility(View.VISIBLE);
+        txt_link.setEnabled(false);
 
     }
+
+    private Bitmap ObterImagemAtual() {
+
+        imagem_post_rede_social.buildDrawingCache();
+        Bitmap bmp = imagem_post_rede_social.getDrawingCache();
+
+        return bmp;
+    }
+
+
 
     private void AbrirGaleria() {
 
@@ -269,13 +297,14 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         return bitmap;
     }
 
-    private Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
+    private Bitmap overlayLogo(Bitmap bmp1, Bitmap bmp2) {
         Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
         Canvas canvas = new Canvas(bmOverlay);
         canvas.drawBitmap(bmp1, new Matrix(), null);
         //canvas.drawBitmap(bmp2, new Matrix(), null);
-        canvas.drawBitmap(bmp2, null, new RectF(20, 20, canvas.getWidth() / 3 , canvas.getHeight() / 2), null);
+        canvas.drawBitmap(bmp2, null, new RectF(50 , 50, canvas.getWidth() / 3 , canvas.getHeight() / 2), null);
         return bmOverlay;
+
     }
 
     @Override
@@ -293,8 +322,8 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
                 logoOverlay = mBitmap;
                 imagem_post_rede_social.buildDrawingCache();
                 Bitmap bmap = imagem_post_rede_social.getDrawingCache();
-                imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
-                bmFinal = overlay(bmap,logoOverlay);
+                imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlayLogo(bmap,logoOverlay)));
+                bmFinal = overlayLogo(bmap,logoOverlay);
 
 
 

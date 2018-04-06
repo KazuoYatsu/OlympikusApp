@@ -11,24 +11,21 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="82dp"
+        tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="8dp">
-
-
 
 
         <Button
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Share Foto" />
+            android:text=" Share Photo to Facebook" />
 
         <Button
             android:id="@+id/btn_toolbar_voltar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Voltar" />
-
 
 
     </android.support.v7.widget.Toolbar>
@@ -44,45 +41,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/edt_local_produto"
-        android:layout_width="352dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_link_produto_id"
-        android:visibility="gone"/>
-
-    <EditText
-        android:id="@+id/edt_link_produto_id"
-        android:layout_width="352dp"
-        android:layout_height="45dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="24dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail_editar_id"
-        android:visibility="gone"/>
 
     <Button
         android:id="@+id/btn_add_local_id"
-        android:layout_width="82dp"
+        android:layout_width="84dp"
         android:layout_height="79dp"
-
         android:layout_marginBottom="2dp"
-        android:layout_marginEnd="8dp"
+
+        android:layout_marginEnd="2dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="128dp"
         android:background="@drawable/roudedbutton"
         android:text="Local"
         android:textAllCaps="false"
@@ -90,16 +57,13 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_add_link_id"
-        app:layout_constraintTop_toBottomOf="@+id/edt_link_produto_id"
-        app:layout_constraintVertical_bias="0.49" />
+        app:layout_constraintStart_toEndOf="@+id/btn_add_link_id" />
 
     <Button
         android:id="@+id/btn_add_link_id"
         android:layout_width="82dp"
         android:layout_height="79dp"
         android:layout_marginBottom="2dp"
-
         android:layout_marginStart="8dp"
         android:layout_marginTop="128dp"
         android:background="@drawable/roudedbutton"
@@ -109,7 +73,7 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_editar_valor_id"
-        app:layout_constraintTop_toBottomOf="@+id/img_thumbnail_editar_id" />
+         />
 
     <Button
         android:id="@+id/btn_editar_valor_id"
@@ -126,14 +90,15 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_editar_logo_id"
-        app:layout_constraintTop_toBottomOf="@+id/edt_local_produto"
-        app:layout_constraintVertical_bias="0.496" />
+
+         />
 
     <Button
         android:id="@+id/btn_editar_logo_id"
         android:layout_width="82dp"
         android:layout_height="79dp"
         android:layout_marginBottom="2dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="128dp"
         android:background="@drawable/roudedbutton"
         android:text="Logo"
@@ -142,9 +107,40 @@
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_local_produto" />
 
+         />
 
+    <EditText
+        android:id="@+id/edt_link_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="textStart"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/edt_local_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/edt_local_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:textColor="@color/colorPrimary"
+        android:textAlignment="textStart"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name"
+        app:layout_constraintBottom_toTopOf="@+id/btn_editar_valor_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
