@@ -154,6 +154,12 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
             @Override
             public void onClick(View view) {
 
+                //Inicie a nova acvity
+                //Envie o bitmap, strings e local via putExtra.
+                Intent intent = new Intent(getApplicationContext(), PostarRedeSocial.class);
+                startActivity(intent);
+
+                /*
 
                 shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
                     @Override
@@ -178,7 +184,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
                 Picasso.with(getBaseContext())
                         .load(url_imagem)
-                        .into(target);
+                        .into(target); */
 
 
             }

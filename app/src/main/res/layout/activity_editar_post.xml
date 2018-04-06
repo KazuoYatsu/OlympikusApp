@@ -19,7 +19,7 @@
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=" Share Photo to Facebook" />
+            android:text="Compartilhar" />
 
         <Button
             android:id="@+id/btn_toolbar_voltar_id"
