@@ -2,6 +2,7 @@ package com.appolympikus.myapplication;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -15,14 +16,18 @@ import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
+import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
 import com.facebook.share.Sharer;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
+import android.net.Uri;
 
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+
+import java.io.FileNotFoundException;
 
 
 public class PostarRedeSocial extends AppCompatActivity {
@@ -64,6 +69,15 @@ public class PostarRedeSocial extends AppCompatActivity {
         Intent intent = getIntent();
         bitmapPostagem = (Bitmap) intent.getParcelableExtra("BitmapPostRedeSocial");
 
+        if(getIntent().hasExtra("BitmapPostRedeSocial")) {
+            //Tambem devera receber a hashtag via intent.
+
+            Bitmap bitmapcomprimido = BitmapFactory.decodeByteArray(
+                    getIntent().getByteArrayExtra("BitmapPostRedeSocial"),0,getIntent()
+                            .getByteArrayExtra("BitmapPostRedeSocial").length);
+            bitmapPostagem = bitmapcomprimido;
+        }
+
         btncompartilharFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -89,29 +103,81 @@ public class PostarRedeSocial extends AppCompatActivity {
 
                 });
 
-                //Hasth tag do produto.
-                ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
-                hashtag.setHashtag("#OlympikusNovaHash");
-
-                //Foto a ser compartilhada
-                SharePhoto photo = new SharePhoto.Builder()
-                        .setBitmap(bitmapPostagem)
-                        .setUserGenerated(true)
-                        .build();
-                SharePhotoContent photoContent = new SharePhotoContent.Builder()
-                        .addPhoto(photo)
-                        .setShareHashtag(hashtag.build())
-                        .setPlaceId("Mecs Bar")
-                        .build();
 
 
-                shareDialog.show(photoContent);
 
 
+
+
+            }
+        });
+        btncompartilharInstagram.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(PostarRedeSocial.this, "You do not have permission to publish on Instagram", Toast.LENGTH_LONG).show();
+                compartilhaFotoNoInstragram();
             }
         });
 
     }
 
+    private void compartilhaFotoNoInstragram() {
+
+        //private String imagePath = "www.centauro.com.br";
+
+        /*
+        Intent intent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
+        if (intent != null)
+        {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.setPackage("com.instagram.android");
+            try {
+
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            shareIntent.setType("image/jpeg");
+
+            startActivity(shareIntent);
+        }
+        else
+        {
+            // bring user to the market to download the app.
+            // or let them choose an app?
+            intent = new Intent(Intent.ACTION_VIEW);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.setData(Uri.parse("market://details?id="+"com.instagram.android"));
+            startActivity(intent);
+        }
+
+        */
 
     }
+
+    private void compartilharFotoNoFacebook() {
+
+        //Hasth tag do produto.
+        ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
+        hashtag.setHashtag("#OlympikusNovaHash");
+
+        SharePhoto photo = new SharePhoto.Builder()
+                .setBitmap(bitmapPostagem)
+                .setUserGenerated(true)
+                .build();
+        SharePhotoContent content = new SharePhotoContent.Builder()
+                .addPhoto(photo)
+                .setShareHashtag(hashtag.build())
+                .build();
+
+        shareDialog.show(content);
+
+
+
+        compartilharFotoNoFacebook();
+
+    }
+
+
+}

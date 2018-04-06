@@ -35,6 +35,7 @@ import com.facebook.FacebookSdk;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
 
@@ -54,34 +55,6 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
     private static final int PICK_IMAGE = 100;
 
 
-    Target target = new Target() {
-        @Override
-        public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-
-            String url_link_loja = "www.centauro.com.br";
-
-            String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
-
-
-
-            //Bitmap do picasso setBitmap(bitmap)
-
-
-
-
-
-        }
-
-        @Override
-        public void onBitmapFailed(Drawable errorDrawable) {
-
-        }
-
-        @Override
-        public void onPrepareLoad(Drawable placeHolderDrawable) {
-
-        }
-    };
 
 
 
@@ -139,7 +112,10 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
                 //Inicie a nova acvity
                 //Envie o bitmap, strings e local via putExtra.
                 Intent intent = new Intent(getApplicationContext(), PostarRedeSocial.class);
-                intent.putExtra("BitmapPostRedeSocial", bmFinal);
+                //Compressao do bitmap para enviar ate a proxima tela
+                ByteArrayOutputStream bs = new ByteArrayOutputStream();
+                bmFinal.compress(Bitmap.CompressFormat.PNG, 50, bs);
+                intent.putExtra("BitmapPostRedeSocial", bs.toByteArray());
                 startActivity(intent);
 
                 /*
