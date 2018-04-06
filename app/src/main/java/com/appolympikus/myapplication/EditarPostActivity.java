@@ -64,27 +64,14 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
 
             String url_link_loja = "www.centauro.com.br";
-            ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
-            hashtag.setHashtag("#OlympikusNovaHash");
+
             String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
 
 
 
             //Bitmap do picasso setBitmap(bitmap)
 
-            //Foto a ser compartilhada
-            SharePhoto photo = new SharePhoto.Builder()
-                    .setBitmap(bmFinal)
-                    .setUserGenerated(true)
-                    .build();
-            SharePhotoContent photoContent = new SharePhotoContent.Builder()
-                    .addPhoto(photo)
-                    .setShareHashtag(hashtag.build())
-                    .setPlaceId("Mecs Bar")
-                    .build();
 
-
-            shareDialog.show(photoContent);
 
 
 
@@ -157,6 +144,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
                 //Inicie a nova acvity
                 //Envie o bitmap, strings e local via putExtra.
                 Intent intent = new Intent(getApplicationContext(), PostarRedeSocial.class);
+                intent.putExtra("BitmapPostRedeSocial", bmFinal);
                 startActivity(intent);
 
                 /*
