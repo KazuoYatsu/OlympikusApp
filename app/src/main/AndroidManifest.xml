@@ -45,11 +45,17 @@
             </intent-filter>
         </activity>
         <activity android:name=".FacebookActivity" />
+        <activity android:name=".CustomTabActivity" />
 
-        <activity android:name=".CustomTabActivity"></activity>
-        <provider android:authorities="com.facebook.app.FacebookContentProvider200218667235353"
+        <provider
             android:name="com.facebook.FacebookContentProvider"
-            android:exported="true"/>
+            android:authorities="com.facebook.app.FacebookContentProvider200218667235353"
+            android:exported="true" />
+
+        <activity
+            android:name=".PostarRedeSocial"
+            android:label="@string/title_activity_postar_rede_social"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
