@@ -23,12 +23,7 @@ import android.graphics.Rect;
 import android.content.Context;
 
 import com.facebook.CallbackManager;
-import com.facebook.FacebookCallback;
-import com.facebook.FacebookException;
-import com.facebook.share.Sharer;
-import com.facebook.share.model.ShareHashtag;
-import com.facebook.share.model.SharePhoto;
-import com.facebook.share.model.SharePhotoContent;
+
 
 
 import com.facebook.share.widget.ShareDialog;
@@ -149,24 +144,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
                 /*
 
-                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
-                    @Override
-                    public void onSuccess(Sharer.Result result) {
-                        Toast.makeText(EditarPostActivity.this, "Compartilhado com sucesso", Toast.LENGTH_LONG).show();
 
-                    }
-
-                    @Override
-                    public void onCancel() {
-                        Toast.makeText(EditarPostActivity.this, "Compartilhamento cancelado", Toast.LENGTH_LONG).show();
-
-                    }
-
-                    @Override
-                    public void onError(FacebookException error) {
-                        Toast.makeText(EditarPostActivity.this, error.getMessage(), Toast.LENGTH_LONG).show();
-
-                    }
                 });
                 String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
 

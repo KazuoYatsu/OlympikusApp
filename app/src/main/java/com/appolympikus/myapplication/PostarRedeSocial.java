@@ -3,19 +3,27 @@ package com.appolympikus.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareHashtag;
 import com.facebook.share.model.SharePhoto;
 import com.facebook.share.model.SharePhotoContent;
 import com.facebook.share.widget.ShareDialog;
+import com.facebook.share.Sharer;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
+
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+
 
 public class PostarRedeSocial extends AppCompatActivity {
 
@@ -23,6 +31,12 @@ public class PostarRedeSocial extends AppCompatActivity {
 
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
+
+    private Bitmap bitmapPostagem;
+
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,11 +62,32 @@ public class PostarRedeSocial extends AppCompatActivity {
         //receber o bitmap do intent
         //receber a hasthtag do produto
         Intent intent = getIntent();
-        final Bitmap bitmapPostagem = (Bitmap) intent.getParcelableExtra("BitmapPostRedeSocial");
+        bitmapPostagem = (Bitmap) intent.getParcelableExtra("BitmapPostRedeSocial");
 
         btncompartilharFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+                //Retorno do Dialog
+                shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
+                    @Override
+                    public void onSuccess(Sharer.Result result) {
+                        Toast.makeText(PostarRedeSocial.this, "Compartilhado com sucesso", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onCancel() {
+                        Toast.makeText(PostarRedeSocial.this, "Compartilhamento cancelado", Toast.LENGTH_LONG).show();
+                    }
+                    @Override
+                    public void onError(FacebookException error) {
+                        Toast.makeText(PostarRedeSocial.this, error.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+
+                    String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
+
+
+                });
 
                 //Hasth tag do produto.
                 ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
@@ -71,10 +106,12 @@ public class PostarRedeSocial extends AppCompatActivity {
 
 
                 shareDialog.show(photoContent);
+
+
             }
         });
 
-
     }
 
-}
+
+    }
