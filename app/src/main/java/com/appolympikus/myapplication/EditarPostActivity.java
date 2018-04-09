@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.net.Uri;
 import android.widget.Toast;
@@ -43,7 +44,8 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
     private ImageView imagem_post_rede_social;
     private EditText txt_local, txt_link;
-    private Button btn_compartilhar_foto, btn_voltar,btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
+    private Button btn_compartilhar_foto, btn_voltar;
+    private ImageButton btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -90,10 +92,10 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
         btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
         //Botoes da pagina.
-        btn_add_local = (Button) findViewById(R.id.btn_add_local_id);
-        btn_add_logo = (Button) findViewById(R.id.btn_editar_logo_id);
-        btn_add_valor = (Button) findViewById(R.id.btn_editar_valor_id);
-        btn_add_link = (Button) findViewById(R.id.btn_add_link_id);
+        btn_add_local = (ImageButton) findViewById(R.id.btn_add_local_id);
+        btn_add_logo = (ImageButton) findViewById(R.id.btn_editar_logo_id);
+        btn_add_valor = (ImageButton) findViewById(R.id.btn_editar_valor_id);
+        btn_add_link = (ImageButton) findViewById(R.id.btn_add_link_id);
 
         //Campos de texto da pagina.
         txt_local = (EditText) findViewById(R.id.edt_local_id);
