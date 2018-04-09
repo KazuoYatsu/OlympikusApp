@@ -32,6 +32,7 @@ import android.content.pm.PackageInfo;
 import android.content.pm.Signature;
 
 
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -129,7 +130,7 @@ public class MainActivity extends AppCompatActivity
         }
         carregarListaProdutos();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.app_custombar_main_id);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
