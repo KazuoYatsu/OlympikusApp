@@ -111,11 +111,15 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
                 //Inicie a nova acvity
                 //Envie o bitmap, strings e local via putExtra.
+                //Comprimir o bitmap antes de enviar
+                Bitmap bmFINAL = ObterImagemAtual();
+                ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                bmFINAL.compress(Bitmap.CompressFormat.PNG, 100, stream);
+                byte[] byteArray = stream.toByteArray();
+
+
                 Intent intent = new Intent(getApplicationContext(), PostarRedeSocial.class);
-                //Compressao do bitmap para enviar ate a proxima tela
-                ByteArrayOutputStream bs = new ByteArrayOutputStream();
-                bmFinal.compress(Bitmap.CompressFormat.PNG, 50, bs);
-                intent.putExtra("BitmapPostRedeSocial", bs.toByteArray());
+                intent.putExtra("image", byteArray);
                 startActivity(intent);
 
                 /*
@@ -213,8 +217,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         galeria.setType("image/*");
         startActivityForResult(galeria,1);
 
-        //Sobrepor a imagem da galeria
-        //imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlay(bmap,logoOverlay)));
+
 
     }
     public Bitmap drawTextToBitmap(Context gContext,
@@ -271,11 +274,11 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
                 imagem_post_rede_social.buildDrawingCache();
                 Bitmap bmap = imagem_post_rede_social.getDrawingCache();
                 imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlayLogo(bmap,logoOverlay)));
-                bmFinal = overlayLogo(bmap,logoOverlay);
+                //bmFinal = overlayLogo(bmap,logoOverlay);
 
 
 
-                Toast.makeText(EditarPostActivity.this, "Imagem Aplicada", Toast.LENGTH_LONG).show();
+                //Toast.makeText(EditarPostActivity.this, "Imagem Aplicada", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }

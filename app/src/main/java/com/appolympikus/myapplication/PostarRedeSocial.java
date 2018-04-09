@@ -9,6 +9,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import android.provider.MediaStore;
 
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -65,24 +66,17 @@ public class PostarRedeSocial extends AppCompatActivity {
         btncompartilharInstagram = (Button) findViewById(R.id.btn_share_to_instagram_id);
 
         //receber o bitmap do intent
-        //receber a hasthtag do produto
-        Intent intent = getIntent();
-        bitmapPostagem = (Bitmap) intent.getParcelableExtra("BitmapPostRedeSocial");
-
-        if(getIntent().hasExtra("BitmapPostRedeSocial")) {
-            //Tambem devera receber a hashtag via intent.
-
-            Bitmap bitmapcomprimido = BitmapFactory.decodeByteArray(
-                    getIntent().getByteArrayExtra("BitmapPostRedeSocial"),0,getIntent()
-                            .getByteArrayExtra("BitmapPostRedeSocial").length);
-            bitmapPostagem = bitmapcomprimido;
-        }
+        //receber a hasthtag do pra
+        //Recebe o bitmap em array e volta ele ao normal.
+        byte[] byteArray = getIntent().getByteArrayExtra("image");
+        bitmapPostagem = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
 
         btncompartilharFace.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
 
+                compartilharFotoNoFacebook(bitmapPostagem);
                 //Retorno do Dialog
                 shareDialog.registerCallback(callbackManager, new FacebookCallback<Sharer.Result>() {
                     @Override
@@ -98,8 +92,6 @@ public class PostarRedeSocial extends AppCompatActivity {
                         Toast.makeText(PostarRedeSocial.this, error.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
-                    String url_imagem = "https://static.olympikus.com.br/produtos/tenis-olympikus-thin-2-feminino/91/D22-0304-791/D22-0304-791_zoom1.jpg?resize=1200:*";
-
 
                 });
 
@@ -114,33 +106,27 @@ public class PostarRedeSocial extends AppCompatActivity {
         btncompartilharInstagram.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(PostarRedeSocial.this, "You do not have permission to publish on Instagram", Toast.LENGTH_LONG).show();
-                compartilhaFotoNoInstragram();
+                //Toast.makeText(PostarRedeSocial.this, "You do not have permission to publish on Instagram", Toast.LENGTH_LONG).show();
+                compartilhaFotoNoInstragram(bitmapPostagem);
             }
         });
 
     }
 
-    private void compartilhaFotoNoInstragram() {
+    private void compartilhaFotoNoInstragram(Bitmap bm) {
 
-        //private String imagePath = "www.centauro.com.br";
 
-        /*
+
+
         Intent intent = getPackageManager().getLaunchIntentForPackage("com.instagram.android");
         if (intent != null)
         {
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
             shareIntent.setPackage("com.instagram.android");
-            try {
 
-            } catch (FileNotFoundException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
-            shareIntent.setType("image/jpeg");
+            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bm, "I am Happy", "Share happy !")));
 
-            startActivity(shareIntent);
         }
         else
         {
@@ -152,30 +138,27 @@ public class PostarRedeSocial extends AppCompatActivity {
             startActivity(intent);
         }
 
-        */
+
 
     }
 
-    private void compartilharFotoNoFacebook() {
+    private void compartilharFotoNoFacebook(Bitmap bm) {
 
         //Hasth tag do produto.
         ShareHashtag.Builder hashtag = new ShareHashtag.Builder();
         hashtag.setHashtag("#OlympikusNovaHash");
 
         SharePhoto photo = new SharePhoto.Builder()
-                .setBitmap(bitmapPostagem)
+                .setBitmap(bm)
                 .setUserGenerated(true)
                 .build();
-        SharePhotoContent content = new SharePhotoContent.Builder()
+        SharePhotoContent photoContent = new SharePhotoContent.Builder()
                 .addPhoto(photo)
                 .setShareHashtag(hashtag.build())
                 .build();
 
-        shareDialog.show(content);
+        shareDialog.show(photoContent);
 
-
-
-        compartilharFotoNoFacebook();
 
     }
 
