@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity
         }
         carregarListaProdutos();
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_custombar_main_id);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
