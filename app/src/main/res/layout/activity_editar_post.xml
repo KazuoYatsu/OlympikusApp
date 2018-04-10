@@ -20,6 +20,7 @@
             android:layout_width="wrap_content"
             android:background="@null"
             android:textAllCaps="false"
+            android:clickable="true"
             android:textColor="@color/colorBlue"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
@@ -27,7 +28,8 @@
             android:text="Cancelar" />
 
         <ImageButton
-            android:id="@+id/btn_toolbar_voltar_id"
+            android:id="@+id/btn_toolbar_voltar_edit_id"
+            android:clickable="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="15dp"
@@ -102,10 +104,10 @@
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_editar_logo_id" />
+        app:layout_constraintStart_toEndOf="@+id/btn_editar_produto_id" />
 
     <ImageButton
-        android:id="@+id/btn_editar_logo_id"
+        android:id="@+id/btn_editar_produto_id"
         android:layout_width="@dimen/roundbutton_width"
         android:layout_height="59dp"
         android:layout_marginBottom="8dp"

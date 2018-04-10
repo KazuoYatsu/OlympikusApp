@@ -10,22 +10,23 @@
     <android.support.v7.widget.Toolbar
 
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="70dp"
         android:background="@color/colorWhite">
 
 
         <TextView
-            android:paddingLeft="280dp"
+            android:paddingLeft="250dp"
             android:paddingRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12dp"
+            android:textSize="20dp"
             android:text="Fechar"/>
 
         <ImageButton
 
             android:id="@+id/btn_voltar_produto_id"
             android:text="fechar"
+            android:clickable="true"
             android:background="@drawable/ic_fechar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -34,7 +35,7 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140px"
+        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -80,14 +81,14 @@
                 android:textSize="26dp" />
 
             <Button
-                android:id="@+id/btn_editar_logo_id"
+                android:id="@+id/btn_editar_produto_id"
                 android:layout_width="match_parent"
                 android:layout_height="79dp"
                 android:layout_gravity="center"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="150dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="50dp"
                 android:backgroundTint="#2d2d2d"
-                android:paddingTop="0dp"
+                android:paddingTop="10dp"
                 android:text="Editar e postar"
                 android:textAlignment="center"
                 android:textAllCaps="false"

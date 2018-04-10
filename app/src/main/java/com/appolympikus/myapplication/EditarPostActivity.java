@@ -3,7 +3,6 @@ package com.appolympikus.myapplication;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
@@ -15,13 +14,13 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.net.Uri;
-import android.widget.Toast;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Matrix;
 import android.graphics.RectF;
 import android.graphics.Rect;
 import android.content.Context;
+import android.widget.Toast;
 
 import com.facebook.CallbackManager;
 
@@ -33,9 +32,6 @@ import com.facebook.share.widget.ShareDialog;
 import com.facebook.FacebookSdk;
 
 
-import com.squareup.picasso.Picasso;
-import com.squareup.picasso.Target;
-
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
@@ -45,7 +41,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
     private ImageView imagem_post_rede_social;
     private EditText txt_local, txt_link;
     private ImageButton btn_compartilhar_foto;
-    private ImageButton btn_voltar;
+    private Button btn_voltar_edit_produto;
     private ImageButton btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
@@ -91,10 +87,10 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
         //Toolbar da pagina
         btn_compartilhar_foto = (ImageButton) findViewById(R.id.btn_compartilhar_foto_id);
-        btn_voltar = (ImageButton) findViewById(R.id.btn_toolbar_voltar_id);
+        btn_voltar_edit_produto = (Button) findViewById(R.id.btn_toolbar_cancelar_id);
         //Botoes da pagina.
         btn_add_local = (ImageButton) findViewById(R.id.btn_add_local_id);
-        btn_add_logo = (ImageButton) findViewById(R.id.btn_editar_logo_id);
+        btn_add_logo = (ImageButton) findViewById(R.id.btn_editar_produto_id);
         btn_add_valor = (ImageButton) findViewById(R.id.ibtn_add_valor_id);
         btn_add_link = (ImageButton) findViewById(R.id.btn_add_link_id);
 
@@ -106,6 +102,16 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
         txt_local.setEnabled(true);
         txt_link.setVisibility(View.INVISIBLE);
         txt_local.setEnabled(true);
+
+        //Toolbar
+        btn_voltar_edit_produto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+
+            }
+        });
 
         //Eventos de click
         btn_compartilhar_foto.setOnClickListener(new View.OnClickListener() {
@@ -278,10 +284,8 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
                 Bitmap bmap = imagem_post_rede_social.getDrawingCache();
                 imagem_post_rede_social.setImageDrawable(new BitmapDrawable(getResources(), overlayLogo(bmap,logoOverlay)));
                 //bmFinal = overlayLogo(bmap,logoOverlay);
+                bmFinal = imagem_post_rede_social.getDrawingCache();
 
-
-
-                //Toast.makeText(EditarPostActivity.this, "Imagem Aplicada", Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
             }
