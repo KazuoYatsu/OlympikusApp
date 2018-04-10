@@ -44,8 +44,9 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
     private ImageView imagem_post_rede_social;
     private EditText txt_local, txt_link;
-    private Button btn_compartilhar_foto, btn_voltar;
+    private Button btn_compartilhar_foto,btn_cancelar;
     private ImageButton btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
+    private ImageButton btn_voltar;
     private CallbackManager callbackManager;
     private ShareDialog shareDialog;
 
@@ -90,7 +91,8 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
         //Toolbar da pagina
         btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
-        btn_voltar = (Button) findViewById(R.id.btn_toolbar_voltar_id);
+        btn_voltar = (ImageButton) findViewById(R.id.btn_toolbar_voltar_id);
+        btn_cancelar = (Button) findViewById(R.id.btn_toolbar_cancelar_id);
         //Botoes da pagina.
         btn_add_local = (ImageButton) findViewById(R.id.btn_add_local_id);
         btn_add_logo = (ImageButton) findViewById(R.id.btn_editar_logo_id);
@@ -162,6 +164,15 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
                 abrirDialogoLink();
 
+            }
+        });
+
+        //TOOLBAR
+
+        btn_cancelar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(EditarPostActivity.this, "Dialogo Cancelar", Toast.LENGTH_SHORT).show();
             }
         });
     }

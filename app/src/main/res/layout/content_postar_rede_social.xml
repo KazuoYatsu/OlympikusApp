@@ -10,8 +10,33 @@
     tools:showIn="@layout/activity_postar_rede_social">
 
 
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar_share_id"
+        android:background="@color/colorPrimaryDark"
+        android:layout_width="match_parent"
+        android:layout_height="80dp">
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_chevron_left_black_24dp"/>
+
+        <TextView
+            android:layout_marginLeft="80dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:text="Compartilhar em"
+            android:textColor="@color/colorWhite"
+            />
+
+
+
+
+    </android.support.v7.widget.Toolbar>
     <Button
+
+        android:layout_marginTop="80dp"
         android:id="@+id/btn_share_to_facebook_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -12,36 +12,37 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="8dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_marginRight="20dp"
             android:id="@+id/btn_toolbar_cancelar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
             android:text="Cancelar" />
+
         <ImageButton
-           android:id="@+id/btn_toolbar_voltar_id"
-            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_toolbar_voltar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_2_voltar"/>
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/ic_2_voltar" />
+
         <ImageButton
             android:id="@+id/btn_toolbar_avancar_id"
-            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_1_frente"/>
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/ic_1_frente" />
+
         <Button
 
-            android:layout_marginLeft="50dp"
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
             android:text="Share" />
-
-
 
 
     </android.support.v7.widget.Toolbar>
@@ -64,7 +65,7 @@
         android:layout_height="@dimen/roundbutton_height"
 
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_marcar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_add_link_id" />
@@ -74,7 +75,7 @@
         android:layout_width="@dimen/roundbutton_width"
         android:layout_height="@dimen/roundbutton_height"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_add_link"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
@@ -86,13 +87,16 @@
         android:id="@+id/btn_editar_valor_id"
         android:layout_width="4dp"
         android:layout_height="5dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/ic_bt_add_valor"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
         android:visibility="invisible"
-        tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="531dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/btn_add_local_id"
+        tools:layout_editor_absoluteY="623dp" />
 
     <ImageButton
         android:id="@+id/btn_editar_valor_id2"
@@ -100,7 +104,7 @@
         android:layout_height="@dimen/roundbutton_height"
 
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_add_valor"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
