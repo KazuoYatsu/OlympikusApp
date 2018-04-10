@@ -15,18 +15,33 @@
         tools:layout_editor_absoluteX="85dp"
         tools:layout_editor_absoluteY="8dp">
 
-
         <Button
+            android:layout_marginRight="20dp"
+            android:id="@+id/btn_toolbar_cancelar_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancelar" />
+        <ImageButton
+           android:id="@+id/btn_toolbar_voltar_id"
+            android:layout_marginLeft="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_2_voltar"/>
+        <ImageButton
+            android:id="@+id/btn_toolbar_avancar_id"
+            android:layout_marginLeft="30dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_1_frente"/>
+        <Button
+
+            android:layout_marginLeft="50dp"
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Compartilhar" />
+            android:text="Share" />
 
-        <Button
-            android:id="@+id/btn_toolbar_voltar_id"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Voltar" />
+
 
 
     </android.support.v7.widget.Toolbar>
