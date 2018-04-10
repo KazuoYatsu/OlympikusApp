@@ -7,17 +7,44 @@
     tools:context="com.appolympikus.myapplication.ProdutoActivity">
 
 
+    <android.support.v7.widget.Toolbar
+
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/colorWhite">
+
+
+        <TextView
+            android:paddingLeft="280dp"
+            android:paddingRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12dp"
+            android:text="Fechar"/>
+
+        <ImageButton
+
+            android:id="@+id/btn_voltar_produto_id"
+            android:text="fechar"
+            android:background="@drawable/ic_fechar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </android.support.v7.widget.Toolbar>
 
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="140px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -55,10 +82,10 @@
             <Button
                 android:id="@+id/btn_editar_logo_id"
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="79dp"
                 android:layout_gravity="center"
                 android:layout_marginBottom="10dp"
-                android:layout_marginTop="130dp"
+                android:layout_marginTop="150dp"
                 android:backgroundTint="#2d2d2d"
                 android:paddingTop="0dp"
                 android:text="Editar e postar"

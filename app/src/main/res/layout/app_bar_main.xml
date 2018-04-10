@@ -14,25 +14,27 @@
 
 
 
-
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:title=" "
-
+            app:title="Olympikus"
             app:popupTheme="@style/AppTheme.PopupOverlay"
 
 
 
             />
 
-        <ImageView
+
+
+        <SearchView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/olympicus_sem_fundo"
-            android:layout_gravity="center"/>
+            android:tooltipText="Pesquisar">
+
+
+
+        </SearchView>
 
     </android.support.design.widget.AppBarLayout>
 
