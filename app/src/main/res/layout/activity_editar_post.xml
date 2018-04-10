@@ -12,36 +12,41 @@
     <android.support.v7.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="8dp">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <Button
-            android:layout_marginRight="20dp"
             android:id="@+id/btn_toolbar_cancelar_id"
             android:layout_width="wrap_content"
+            android:background="@null"
+            android:textAllCaps="false"
+            android:textColor="@color/colorBlue"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="25dp"
             android:text="Cancelar" />
+
         <ImageButton
-           android:id="@+id/btn_toolbar_voltar_id"
-            android:layout_marginLeft="20dp"
+            android:id="@+id/btn_toolbar_voltar_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_2_voltar"/>
+            android:layout_marginLeft="20dp"
+            android:background="@drawable/ic_2_voltar" />
+
         <ImageButton
             android:id="@+id/btn_toolbar_avancar_id"
-            android:layout_marginLeft="30dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/ic_1_frente"/>
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/ic_1_frente" />
+
         <Button
 
-            android:layout_marginLeft="50dp"
             android:id="@+id/btn_compartilhar_foto_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="40dp"
             android:text="Share" />
-
-
 
 
     </android.support.v7.widget.Toolbar>
@@ -64,7 +69,7 @@
         android:layout_height="@dimen/roundbutton_height"
 
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_marcar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_add_link_id" />
@@ -73,34 +78,24 @@
         android:id="@+id/btn_add_link_id"
         android:layout_width="@dimen/roundbutton_width"
         android:layout_height="@dimen/roundbutton_height"
+        android:layout_marginRight="8dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_add_link"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
         android:textSize="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_editar_valor_id2" />
+        app:layout_constraintStart_toEndOf="@+id/ibtn_add_valor_id" />
+
 
     <ImageButton
-        android:id="@+id/btn_editar_valor_id"
-        android:layout_width="4dp"
-        android:layout_height="5dp"
-        android:background="@drawable/ic_bt_add_valor"
-        android:textAllCaps="false"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18dp"
-        android:visibility="invisible"
-        tools:layout_editor_absoluteX="190dp"
-        tools:layout_editor_absoluteY="531dp" />
-
-    <ImageButton
-        android:id="@+id/btn_editar_valor_id2"
+        android:id="@+id/ibtn_add_valor_id"
         android:layout_width="@dimen/roundbutton_width"
         android:layout_height="@dimen/roundbutton_height"
 
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="24dp"
         android:background="@drawable/ic_bt_add_valor"
         android:textAllCaps="false"
         android:textColor="@color/colorPrimary"
@@ -111,9 +106,9 @@
     <ImageButton
         android:id="@+id/btn_editar_logo_id"
         android:layout_width="@dimen/roundbutton_width"
-        android:layout_height="@dimen/roundbutton_height"
+        android:layout_height="59dp"
         android:layout_marginBottom="8dp"
-        android:layout_marginStart="24dp"
+        android:layout_marginStart="8dp"
         android:background="@drawable/ic_bt_add_logo"
         android:text="Logo"
         android:textAllCaps="false"
@@ -141,14 +136,17 @@
         android:id="@+id/edt_local_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:inputType="textPersonName"
         android:text="Name"
         android:textAlignment="textStart"
         android:textColor="@color/colorPrimary"
-        app:layout_constraintTop_toBottomOf="@+id/edt_link_id"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintBottom_toTopOf="@+id/btn_add_link_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_link_id" />
 
 
 </android.support.constraint.ConstraintLayout>
