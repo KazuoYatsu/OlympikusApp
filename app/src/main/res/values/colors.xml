@@ -4,6 +4,7 @@
     <color name="colorWhite">#FFFFFF</color>
     <color name="colorPrimaryDark">#000000 </color>
     <color name="colorGray">#2d2d2d</color>
+    <color name="colorGrayMedium">#4f4e4e</color>
     <color name="colorGrayLight">#7E7E7E</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorBlue">#4286f4</color>

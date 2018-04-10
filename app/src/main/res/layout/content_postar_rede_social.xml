@@ -4,17 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorGray"
+    android:background="@color/colorGrayMedium"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.appolympikus.myapplication.PostarRedeSocial"
     tools:showIn="@layout/activity_postar_rede_social">
 
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorGray"
 
+        >
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_arrow_back_black_24dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:textColor="@color/colorWhite"
+            android:text="Compartilhar Em: "
+            android:textSize="18dp"/>
+
+
+    </android.support.v7.widget.Toolbar>
 
     <Button
         android:id="@+id/btn_share_to_facebook_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
         android:text="Share to facebook"
         android:pointerIcon="arrow"/>
 
