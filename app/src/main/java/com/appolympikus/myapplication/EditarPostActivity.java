@@ -44,7 +44,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
     private ImageView imagem_post_rede_social;
     private EditText txt_local, txt_link;
-    private Button btn_compartilhar_foto;
+    private ImageButton btn_compartilhar_foto;
     private ImageButton btn_voltar;
     private ImageButton btn_add_link, btn_add_local, btn_add_logo, btn_add_valor;
     private CallbackManager callbackManager;
@@ -90,7 +90,7 @@ public class EditarPostActivity extends AppCompatActivity implements DialogoValo
 
 
         //Toolbar da pagina
-        btn_compartilhar_foto = (Button) findViewById(R.id.btn_compartilhar_foto_id);
+        btn_compartilhar_foto = (ImageButton) findViewById(R.id.btn_compartilhar_foto_id);
         btn_voltar = (ImageButton) findViewById(R.id.btn_toolbar_voltar_id);
         //Botoes da pagina.
         btn_add_local = (ImageButton) findViewById(R.id.btn_add_local_id);
